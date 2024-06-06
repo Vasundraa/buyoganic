@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign Up / Sign In</title>
 <style>
+
 :root {
     --primary-color: #b0b435;
     --secondary-color: #b0b435;
@@ -347,6 +348,7 @@ body {
         font-size: 2rem;
     }
 }
+
 </style>
 </head>
 <body>
@@ -357,36 +359,13 @@ body {
         <div class="col align-items-center flex-col sign-up">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-up">
-                    <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" placeholder="Username">
-                    </div>
-                    <!-- New field for selecting user type -->
-                    <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <select name="userType" id="userType" class="styled-select">
-                            <option value="" selected disabled hidden>Role</option>
-                            <option value="consumer">Consumer</option>
-                            <option value="seller">Seller</option>
-                            <option value="employee">Employee</option>
-                        </select>
-                    </div>
-                    <!-- End of new field -->
-                    <div class="input-group">
-                        <i class='bx bx-mail-send'></i>
-                        <input type="email" placeholder="Email">
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Confirm password">
-                    </div>
-                    <button>
-                        Sign up
-                    </button>
+                    <!-- Django Signup Form -->
+                    <form method="post" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Sign up</button>
+                    </form>
+                    <!-- End of Django Signup Form -->
                     <p>
                         <span>
                             Already have an account?
@@ -397,24 +376,19 @@ body {
                     </p>
                 </div>
             </div>
-        
         </div>
         <!-- END SIGN UP -->
         <!-- SIGN IN -->
         <div class="col align-items-center flex-col sign-in">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-in">
-                    <div class="input-group">
-                        <i class='bx bxs-user'></i>
-                        <input type="text" placeholder="Username">
-                    </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" placeholder="Password">
-                    </div>
-                    <button>
-                        Sign in
-                    </button>
+                    <!-- Django Authentication Form -->
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Sign in</button>
+                    </form>
+                    <!-- End of Django Authentication Form -->
                     <p>
                         <b>
                             Forgot password?
@@ -428,10 +402,12 @@ body {
                             Sign up here
                         </b>
                     </p>
+                    {% if error_message %}
+                        <p>{{ error_message }}</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="form-wrapper">
-    
             </div>
         </div>
         <!-- END SIGN IN -->
@@ -445,23 +421,19 @@ body {
                 <h2>
                     Welcome to BUYOGANIC
                 </h2>
-    
             </div>
             <div class="img sign-in">
-    
             </div>
         </div>
         <!-- END SIGN IN CONTENT -->
         <!-- SIGN UP CONTENT -->
         <div class="col align-items-center flex-col">
             <div class="img sign-up">
-            
             </div>
             <div class="text sign-up">
                 <h2>
                     Join with us
                 </h2>
-    
             </div>
         </div>
         <!-- END SIGN UP CONTENT -->
